@@ -1,5 +1,5 @@
 create database EcommerceDB
-drop database EcommerceDB
+
 use EcommerceDB
 -- Create Customers table
 
