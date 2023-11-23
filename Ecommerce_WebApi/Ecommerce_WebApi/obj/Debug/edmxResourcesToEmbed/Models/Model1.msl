@@ -7,6 +7,7 @@
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
           <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CategoryImage" ColumnName="CategoryImage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -27,6 +28,7 @@
         <MappingFragment StoreEntitySet="OrderDetails">
           <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
           <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />

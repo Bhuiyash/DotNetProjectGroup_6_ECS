@@ -8,17 +8,22 @@ using Ecommerce_WebApi.Models;
 
 namespace Ecommerce_WebApi.Controllers
 {
+    [RoutePrefix("api/Order")]
     public class OrderController : ApiController
     {
         EcommerceDBContext db = new EcommerceDBContext();
 
         //Get
+        [HttpGet]
+        [Route("OrderList")]
         public IEnumerable<Order> Get()
         {
             return db.Orders.ToList();
         }
 
         //Get by ID
+        [HttpGet]
+        [Route("OrderListByID")]
         public Order Get(int id)
         {
             return db.Orders.FirstOrDefault(x => x.OrderId == id);
@@ -26,6 +31,8 @@ namespace Ecommerce_WebApi.Controllers
         }
 
         //post or add
+        [HttpPost]
+        [Route("AddOrder")]
         public IHttpActionResult PostOrder([FromBody] Order o)
         {
             if (!ModelState.IsValid)
@@ -45,17 +52,30 @@ namespace Ecommerce_WebApi.Controllers
         }
 
         //put or edit
-        public IHttpActionResult Put([FromBody] Order o)
+        [HttpPut]
+        [Route("EditOrderByID")]
+        public IHttpActionResult Put(int Id, [FromBody] Order o)
         {
             if (!ModelState.IsValid)
             {
-                db.Entry(o).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                return BadRequest("Invalid ModelState");
             }
-            return Ok("Modified");
+            Order order = db.Orders.Find(Id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            // Update existingCustomer properties with values from updatedCustomer
+            order.CustomerId = o.CustomerId;
+            order.OrderDate = o.OrderDate;
+            order.ShipDate = o.ShipDate;
+            db.SaveChanges();
+            return Ok("Updated");
         }
 
         //delete
+        [HttpDelete]
+        [Route("DeleteOrder")]
         public IHttpActionResult Delete(int id)
         {
             Order order = db.Orders.Find(id);

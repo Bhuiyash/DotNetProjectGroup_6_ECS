@@ -16,10 +16,12 @@ namespace Ecommerce_WebApi.Models
     {
         public int OrderDetailsID { get; set; }
         public Nullable<int> OrderId { get; set; }
+        public Nullable<int> CustomerId { get; set; }
         public Nullable<int> ProductId { get; set; }
         public int Quantity { get; set; }
         public Nullable<decimal> UnitCost { get; set; }
     
+        public virtual Customer Customer { get; set; }
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
     }

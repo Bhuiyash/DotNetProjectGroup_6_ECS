@@ -9,17 +9,22 @@ using Ecommerce_WebApi.Models;
 
 namespace Ecommerce_WebApi.Controllers
 {
+    [RoutePrefix("api/ShoppingCart")]
     public class ShoppingCartController : ApiController
     {
         EcommerceDBContext db = new EcommerceDBContext();
 
         //Get
+        [HttpGet]
+        [Route("ShoppingCartList")]
         public IEnumerable<ShoppingCart> Get()
         {
             return db.ShoppingCarts.ToList();
         }
 
         //Get by ID
+        [HttpGet]
+        [Route("ShoppingCartListByID")]
         public ShoppingCart Get(int id)
         {
             return db.ShoppingCarts.FirstOrDefault(x => x.CartId == id);
@@ -27,6 +32,8 @@ namespace Ecommerce_WebApi.Controllers
         }
 
         //post or add
+        [HttpPost]
+        [Route("AddShoppingCart")]
         public IHttpActionResult PostShoppingcart([FromBody] ShoppingCart sp)
         {
             if (!ModelState.IsValid)
@@ -47,27 +54,42 @@ namespace Ecommerce_WebApi.Controllers
         }
 
         //put or edit
-        public IHttpActionResult Put([FromBody] Order o)
+        [HttpPut]
+        [Route("EditShoppingCartByID")]
+        public IHttpActionResult Put(int Id, [FromBody] ShoppingCart sc)
         {
             if (!ModelState.IsValid)
             {
-                db.Entry(o).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                return BadRequest("Invalid ModelState");
             }
-            return Ok("Modified");
+            ShoppingCart shoppingCart = db.ShoppingCarts.Find(Id);
+            if (shoppingCart == null)
+            {
+                return NotFound();
+            }
+            // Update existingCustomer properties with values from updatedCustomer
+            shoppingCart.CustomerID = sc.CustomerID;
+            shoppingCart.Quantity = sc.Quantity;
+            shoppingCart.ProductId=sc.ProductId;
+            shoppingCart.DateCreated=sc.DateCreated;
+           
+            db.SaveChanges();
+            return Ok("Updated");
         }
 
         //delete
+        [HttpDelete]
+        [Route("DeleteShoppingCartByID")]
         public IHttpActionResult Delete(int id)
         {
-            Order order = db.Orders.Find(id);
+            ShoppingCart shoppingcart = db.ShoppingCarts.Find(id);
 
-            if (order == null)
+            if (shoppingcart == null)
             {
                 return NotFound();
             }
 
-            db.Orders.Remove(order);
+            db.ShoppingCarts.Remove(shoppingcart);
             db.SaveChanges();
             return Ok("Deleted");
         }

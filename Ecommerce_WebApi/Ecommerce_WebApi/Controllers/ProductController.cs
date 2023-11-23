@@ -8,22 +8,30 @@ using Ecommerce_WebApi.Models;
 
 namespace Ecommerce_WebApi.Controllers
 {
+    [RoutePrefix("api/Product")]
     public class ProductController : ApiController
     {
         EcommerceDBContext db = new EcommerceDBContext();
+
         //Get
+        [HttpGet]
+        [Route("ProductList")]
         public IEnumerable<Product> Get()
         {
             return db.Products.ToList();
         }
 
         //Get by ID
+        [HttpGet]
+        [Route("ProductListByID")]
         public Product Get(int id)
         {
             return db.Products.FirstOrDefault(x => x.ProductId == id);
         }
 
         //post or add
+        [HttpPost]
+        [Route("AddProduct")]
         public IHttpActionResult PostProduct([FromBody] Product p)
         {
             if (!ModelState.IsValid)
@@ -46,17 +54,33 @@ namespace Ecommerce_WebApi.Controllers
         }
 
         //put or edit
-        public IHttpActionResult Put([FromBody] Customer c)
+        [HttpPut]
+        [Route("EditProductByID")]
+        public IHttpActionResult Put(int Id, [FromBody] Product p)
         {
             if (!ModelState.IsValid)
             {
-                db.Entry(c).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                return BadRequest("Invalid ModelState");
             }
-            return Ok("Modified");
+            Product product = db.Products.Find(Id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            // Update existingCustomer properties with values from updatedCustomer
+            product.CategoryId = p.CategoryId;
+            product.ModelNumber = p.ModelNumber;
+            product.ModelName = p.ModelName;
+            product.UnitCost = p.UnitCost;
+            product.Description=p.Description;
+            product.ProductImage = p.ProductImage;
+            db.SaveChanges();
+            return Ok("Updated");
         }
 
         //delete
+        [HttpDelete]
+        [Route("DeleteProductByID")]
         public IHttpActionResult Delete(int id)
         {
             Product product = db.Products.Find(id);

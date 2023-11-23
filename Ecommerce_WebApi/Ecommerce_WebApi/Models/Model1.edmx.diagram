@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6d352177760340e2a2cbfb2b5c026d1c" Name="Diagram1">
+      <Diagram DiagramId="5dd18cbf6e244ae899fa242075d81f0f" Name="Diagram1">
         <EntityTypeShape EntityType="EcommerceDBModel.Category" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.Customer" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Customer" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="EcommerceDBModel.OrderDetail" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.Order" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.Product" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.ShoppingCart" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Order" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Product" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.ShoppingCart" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
         <AssociationConnector Association="EcommerceDBModel.FK__Products__Catego__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK__OrderDeta__Custo__2E1BDC42" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceDBModel.FK__Orders__Customer__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="EcommerceDBModel.FK__ShoppingC__Custo__35BCFE0A" ManuallyRouted="false" />
-        <AssociationConnector Association="EcommerceDBModel.FK__OrderDeta__Order__2E1BDC42" ManuallyRouted="false" />
-        <AssociationConnector Association="EcommerceDBModel.FK__OrderDeta__Produ__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="EcommerceDBModel.FK__ShoppingC__Produ__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK__ShoppingC__Custo__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK__OrderDeta__Order__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK__OrderDeta__Produ__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK__ShoppingC__Produ__33D4B598" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -8,17 +8,22 @@ using Ecommerce_WebApi.Models;
 
 namespace Ecommerce_WebApi.Controllers
 {
+    [RoutePrefix("api/OrderDetails")]
     public class OrderDetailController : ApiController
     {
         EcommerceDBContext db = new EcommerceDBContext();
 
         //Get
+        [HttpGet]
+        [Route("OrderDetailsList")]
         public IEnumerable<OrderDetail> Get()
         {
             return db.OrderDetails.ToList();
         }
 
         //Get by ID
+        [HttpGet]
+        [Route("OrderListByID")]
         public OrderDetail Get(int id)
         {
             return db.OrderDetails.FirstOrDefault(x => x.OrderDetailsID == id);
@@ -26,6 +31,8 @@ namespace Ecommerce_WebApi.Controllers
         }
 
         //post or add
+        [HttpPost]
+        [Route("AddOrderDetails")]
         public IHttpActionResult PostOrderDetails([FromBody] OrderDetail od)
         {
             if (!ModelState.IsValid)
@@ -36,6 +43,7 @@ namespace Ecommerce_WebApi.Controllers
             {
                 OrderDetailsID= od.OrderDetailsID,
                 OrderId = od.OrderId,
+                CustomerId=od.CustomerId,
                 ProductId = od.ProductId,
                 Quantity = od.Quantity,
                 UnitCost = od.UnitCost,
@@ -46,27 +54,42 @@ namespace Ecommerce_WebApi.Controllers
         }
 
         //put or edit
-        public IHttpActionResult Put([FromBody] Order o)
+        [HttpPut]
+        [Route("EditOrderDetailsByID")]
+        public IHttpActionResult Put(int Id, [FromBody] OrderDetail od)
         {
             if (!ModelState.IsValid)
             {
-                db.Entry(o).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                return BadRequest("Invalid ModelState");
             }
-            return Ok("Modified");
+            OrderDetail orderdetails = db.OrderDetails.Find(Id);
+            if (orderdetails == null)
+            {
+                return NotFound();
+            }
+            // Update existingCustomer properties with values from updatedCustomer
+            orderdetails.OrderId = od.OrderId;
+            orderdetails.CustomerId = od.CustomerId;
+            orderdetails.ProductId = od.ProductId;
+            orderdetails.Quantity =od.Quantity;
+            orderdetails.UnitCost = od.UnitCost;
+            db.SaveChanges();
+            return Ok("Updated");
         }
 
         //delete
+        [HttpDelete]
+        [Route("DeleteOrderDetailsByID")]
         public IHttpActionResult Delete(int id)
         {
-            Order order = db.Orders.Find(id);
+            OrderDetail orderdetail = db.OrderDetails.Find(id);
 
-            if (order == null)
+            if (orderdetail == null)
             {
                 return NotFound();
             }
 
-            db.Orders.Remove(order);
+            db.OrderDetails.Remove(orderdetail);
             db.SaveChanges();
             return Ok("Deleted");
         }

@@ -11,15 +11,15 @@ CREATE TABLE Customers (
     DeliveryAddress NVARCHAR(300) NOT NULL,
 	PhoneNumber NVARCHAR(100) NOT NULL,
 )
-insert into Customers(FullName, EmailAddress, Password, DeliveryAddress, PhoneNumber) values('ChandanKumar HR', 'chandankumarhr2000@gmail.com','chandan@07', 'bangalore', '8151913204')
-select * from Customers
- 
+select * from Categories
+delete from Categories where CategoryId=3
 CREATE TABLE Categories (
     CategoryId INT PRIMARY KEY IDENTITY(1,1),
     CategoryName NVARCHAR(300) NOT NULL,
-    Description NVARCHAR(MAX) NULL
+    Description NVARCHAR(MAX) NULL,
+	CategoryImage VARBINARY(MAX)NULL
 )
- 
+INSERT INTO Categories (CategoryName, Description, CategoryImage) VALUES('Electronics','Electronics devices',(SELECT BulkColumn FROM OPENROWSET(BULK 'C:\DOT NET PROJECT\Electronics.jpg', SINGLE_BLOB) as img));
 -- Create Products table
 CREATE TABLE Products (
     ProductId INT PRIMARY KEY IDENTITY(1,1),
@@ -30,7 +30,7 @@ CREATE TABLE Products (
     Description NVARCHAR(MAX) NULL,
 	ProductImage VARBINARY(MAX)
 )
- 
+
 -- Create Orders table
 CREATE TABLE Orders (
     OrderId INT PRIMARY KEY IDENTITY(1,1),
@@ -43,6 +43,7 @@ CREATE TABLE Orders (
 CREATE TABLE OrderDetails (
     OrderDetailsID INT IDENTITY(1,1) PRIMARY KEY,
     OrderId INT,
+    CustomerId INT FOREIGN KEY REFERENCES Customers(CustomerId),
     ProductId INT, 
     Quantity INT NOT NULL,
     UnitCost DECIMAL(10,2),
@@ -61,3 +62,6 @@ CREATE TABLE ShoppingCart (
 	FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId),
     FOREIGN KEY (ProductId) REFERENCES Products(ProductId)
 )
+
+insert into Customers(FullName, EmailAddress, Password, DeliveryAddress, PhoneNumber) values('ChandanKumar HR', 'chandankumarhr2000@gmail.com','chandan@07', 'bangalore', '8151913204')
+select * from Customers
