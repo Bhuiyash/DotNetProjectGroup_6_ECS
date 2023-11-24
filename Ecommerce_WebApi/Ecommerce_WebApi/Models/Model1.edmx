@@ -12,7 +12,7 @@
           <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="CategoryImage" Type="varbinary(max)" />
+          <Property Name="CategoryImage" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -55,7 +55,7 @@
           <Property Name="ModelName" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="UnitCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="ProductImage" Type="varbinary(max)" />
+          <Property Name="ProductImage" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="ShoppingCart">
           <Key>
@@ -199,7 +199,7 @@
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CategoryImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK__Products__Catego__286302EC" FromRole="Categories" ToRole="Products" />
         </EntityType>
         <EntityType Name="Customer">
@@ -251,7 +251,7 @@
           <Property Name="ModelName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UnitCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK__Products__Catego__286302EC" FromRole="Products" ToRole="Categories" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Produ__300424B4" FromRole="Products" ToRole="OrderDetails" />
           <NavigationProperty Name="ShoppingCarts" Relationship="Self.FK__ShoppingC__Produ__33D4B598" FromRole="Products" ToRole="ShoppingCart" />

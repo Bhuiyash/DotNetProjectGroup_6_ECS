@@ -27,7 +27,7 @@ namespace Ecommerce_WebApi.Models
         public string ModelName { get; set; }
         public decimal UnitCost { get; set; }
         public string Description { get; set; }
-        public byte[] ProductImage { get; set; }
+        public string ProductImage { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

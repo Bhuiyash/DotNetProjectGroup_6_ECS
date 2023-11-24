@@ -1,18 +1,11 @@
 ﻿@model Ecommerce_MVC.Models.customer
-@{ ViewBag.Title = "Customer Login"; }
+
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
     <style>
-       
         body {
             font-family: Arial, sans-serif;
-            background-color: white;
+            background-color: floralwhite;
         }
 
         h2 {
@@ -22,8 +15,8 @@
         .form-horizontal {
             max-width: 600px;
             margin: 0 auto;
-            background-color: ivory ;
-            padding: 20px;
+            background-color: lemonchiffon;
+            padding: 50px;
             border: 1px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -50,8 +43,8 @@
         }
 
         .btn-default {
-            background-color: #428bca;
-            color: #fff;
+            background-color: black;
+            color: white;
             border: 1px solid #357ebd;
             padding: 8px 15px;
             border-radius: 4px;
@@ -59,7 +52,7 @@
         }
 
             .btn-default:hover {
-                background-color: #3071a9;
+                background-color: white;
                 border: 1px solid #285e8e;
             }
 
@@ -79,10 +72,7 @@
             margin-left: 16.66666667%;
         }
     </style>
- 
-</head>
-<body>
-    <h2>Login</h2>
+
     @using (Html.BeginForm())
     {
 @Html.AntiForgeryToken()
@@ -106,20 +96,15 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Login" class="btn btn-custom" />
+                            <input type="submit" value="Login" class="btn btn-default" />
                         </div>
                         @*<div class="col-md-offset-2 col-md-10">
                             <p>Dont have account please register here</p>
-                            @Html.ActionLink("Register", "Register", "Customer", new { @class = "btn btn-custom" })
-                        </div>*@
-                        <a style="text-align:center" href="Register">Dont have the account please register here</a>
+                                                        @Html.ActionLink("Register", "Register", "Customer", new { @class = "btn btn-custom" })
+                            </div>*@
+                        <a style="text-align:center" href="Register">Dont have the account please Click here for register</a>
                     </div>
                 </div>}
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to Home Page", "Index", "Home")
     </div>
-    <!-- Bootstrap and jQuery scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</body>
-</html>

@@ -7,7 +7,7 @@
     <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CategoryName" Type="nvarchar" MaxLength="300" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="CategoryImage" Type="varbinary(max)" />
+    <Property Name="CategoryImage" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Customers">
     <Key>
@@ -50,7 +50,7 @@
     <Property Name="ModelName" Type="nvarchar" MaxLength="300" Nullable="false" />
     <Property Name="UnitCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="ProductImage" Type="varbinary(max)" />
+    <Property Name="ProductImage" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="ShoppingCart">
     <Key>

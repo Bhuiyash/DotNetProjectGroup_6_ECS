@@ -10,6 +10,6 @@ namespace Ecommerce_MVC.Models
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
-        public byte[] CategoryImage { get; set; }
+        public string CategoryImage { get; set; }
     }
 }

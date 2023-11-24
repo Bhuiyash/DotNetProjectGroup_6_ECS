@@ -4,10 +4,38 @@
     ViewBag.Title = "Category";
 }
 
+<div style="background-color:lemonchiffon">
+    <h2 style="padding-bottom:50px; text-align-last:center; color:Red"><b>CATEGORY</b></h2>
+    <div class="row" style="margin-left:50px">
 
-<h2>Category</h2>
 
-<p>
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-4">
+                <div class="card" style="width:24rem; ">
+
+                    <img src="@item.CategoryImage" class="card-img-top" style="width:250px; height:200px" />
+                    <div class="card-body">
+
+                        <div> <h4><b>@item.CategoryName</b></h4></div>
+                        <div> <h4><b>@item.Description</b></h4></div>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+
+    </div>
+
+</div>
+
+
+
+@*<p>
     @Html.ActionLink("Create New", "CreateCategory")
 </p>
 <table class="table">
@@ -24,23 +52,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryImage)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CategoryID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <img src="@item.CategoryImage" class="card-img-top" />
 
-</table>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CategoryID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })
+            </td>
+        </tr>
+    }
+
+</table>*@

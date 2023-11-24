@@ -1,5 +1,5 @@
 create database EcommerceDB
-drop database EcommerceDB
+
 use EcommerceDB
 -- Create Customers table
 
@@ -11,15 +11,16 @@ CREATE TABLE Customers (
     DeliveryAddress NVARCHAR(300) NOT NULL,
 	PhoneNumber NVARCHAR(100) NOT NULL,
 )
+
+select * from Customers
 select * from Categories
 delete from Categories where CategoryId=3
 CREATE TABLE Categories (
     CategoryId INT PRIMARY KEY IDENTITY(1,1),
     CategoryName NVARCHAR(300) NOT NULL,
     Description NVARCHAR(MAX) NULL,
-	CategoryImage VARBINARY(MAX)NULL
+	CategoryImage VARCHAR(MAX)NULL
 )
-INSERT INTO Categories (CategoryName, Description, CategoryImage) VALUES('Electronics','Electronics devices',(SELECT BulkColumn FROM OPENROWSET(BULK 'C:\DOT NET PROJECT\Electronics.jpg', SINGLE_BLOB) as img));
 -- Create Products table
 CREATE TABLE Products (
     ProductId INT PRIMARY KEY IDENTITY(1,1),
@@ -28,7 +29,7 @@ CREATE TABLE Products (
     ModelName NVARCHAR(300) NOT NULL,
     UnitCost DECIMAL(10, 2) NOT NULL,
     Description NVARCHAR(MAX) NULL,
-	ProductImage VARBINARY(MAX)
+	ProductImage VARCHAR(MAX)
 )
 
 -- Create Orders table
